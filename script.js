@@ -275,7 +275,7 @@
    const id=location.hash.slice(1);
    if(id.startsWith('sheet-'))openSheet(id);
  });
- if(location.hash.startsWith('#sheet-'))openSheet(location.hash.slice(1));
+ if(location.hash.startsWith('#sheet-'))openSheet(location.hash.slice(1));\n else if(location.hash.startsWith('#scene-'))document.getElementById(location.hash.slice(1))?.scrollIntoView({block:'start'});
  document.addEventListener('keydown',event=>{
    if(event.key==='Escape'&&activeSheet){closeSheet();return;}
    if(event.key.toLowerCase()==='k'&&!event.target.matches('input,textarea,select,[contenteditable="true"]')){
@@ -298,7 +298,7 @@
    entries.forEach(entry=>{
      if(entry.isIntersecting){
        const n=scenes.indexOf(entry.target);
-       if(n>=0){activeScene=n;syncDock();}
+       if(n>=0){activeScene=n;syncDock();history.replaceState({scene:scenes[n].id},'', '#'+scenes[n].id);const progress=document.querySelector('[data-top-progress]');if(progress)progress.style.width=((n+1)/scenes.length*100)+'%';const ring=document.querySelector('.island-ring');if(ring)ring.style.setProperty('--ring-progress',((n+1)/scenes.length*100)+'%');}
      }
    });
  },{root:cinema,threshold:.6});
