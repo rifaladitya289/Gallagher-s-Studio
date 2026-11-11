@@ -85,18 +85,19 @@
  // Scroll progress gives the film strip a restrained entrance as its scene arrives.\n const processScene=$('#scene-03');\n const filmstrip=$('[data-filmstrip]');\n if(processScene && filmstrip && !reduced){\n   let stripFrame=0;\n   const updateStrip=()=>{\n     const rect=processScene.getBoundingClientRect();\n     const vh=window.innerHeight||1;\n     const progress=Math.max(0,Math.min(1,(vh-rect.top)/(vh+rect.height)));\n     filmstrip.style.transform='translate3d('+(1-progress)*34+'px,0,0)';\n     stripFrame=0;\n   };\n   const requestStrip=()=>{if(stripFrame)return;stripFrame=requestAnimationFrame(updateStrip);};\n   cinema?.addEventListener('scroll',requestStrip,{passive:true});\n   requestStrip();\n }\n\n // Keyboard shortcuts: arrows navigate scenes; 1–6 jump; M opens menu.
  document.addEventListener('keydown', event => {
    const target = event.target;
-   const typing = target && (target.matches('input,textarea,select,button,[contenteditable="true"]'));
-   if (event.key === 'Escape' && menuPanel?.classList.contains('is-open')) { setMenu(false); return; }
-   if (typing) return;
-   if (menuPanel?.classList.contains('is-open')) {
+   const menuOpen = menuPanel?.classList.contains('is-open');
+   if (event.key === 'Escape' && menuOpen) { setMenu(false); return; }
+   if (menuOpen) {
      if (event.key === 'Tab') {
-       const focusables = $('a[href],button:not([disabled])', menuPanel);
+       const focusables = $$('a[href],button:not([disabled])', menuPanel);
        const first = focusables[0], last = focusables[focusables.length-1];
        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
      }
      return;
    }
+   const typing = target && target.matches('input,textarea,select,button,[contenteditable="true"]');
+   if (typing) return;
    if (event.key.toLowerCase() === 'm') { event.preventDefault(); setMenu(true); return; }
    if (!scenes.length) return;
    if (/^[1-6]$/.test(event.key)) { event.preventDefault(); goToScene(Number(event.key)-1); return; }
