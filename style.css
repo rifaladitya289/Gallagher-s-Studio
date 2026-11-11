@@ -478,3 +478,4 @@ html:has(.cinema) a,html:has(.cinema) button{cursor:none}
 .poster-art>img:first-of-type{aspect-ratio:1.24}
 .cursor-system.is-link .cursor-core{width:26px;height:26px;background:color-mix(in srgb,var(--accent-strong) 18%,transparent);border:1px solid var(--accent-strong);transition:width .2s,height .2s}
 @media(prefers-reduced-motion:reduce){.cursor-system.is-link .cursor-core{transition:none}}
+\nbody.menu-open{overflow:hidden}\n
