@@ -79,7 +79,7 @@
    scenes[0].classList.add('is-active');
  }
 
- // Keyboard shortcuts: arrows navigate scenes; 1–6 jump; M opens menu.
+ // Scroll progress gives the film strip a restrained entrance as its scene arrives.\n const processScene=$('#scene-03');\n const filmstrip=$('[data-filmstrip]');\n if(processScene && filmstrip && !reduced){\n   let stripFrame=0;\n   const updateStrip=()=>{\n     const rect=processScene.getBoundingClientRect();\n     const vh=window.innerHeight||1;\n     const progress=Math.max(0,Math.min(1,(vh-rect.top)/(vh+rect.height)));\n     filmstrip.style.transform='translate3d('+(1-progress)*34+'px,0,0)';\n     stripFrame=0;\n   };\n   const requestStrip=()=>{if(stripFrame)return;stripFrame=requestAnimationFrame(updateStrip);};\n   cinema?.addEventListener('scroll',requestStrip,{passive:true});\n   requestStrip();\n }\n\n // Keyboard shortcuts: arrows navigate scenes; 1–6 jump; M opens menu.
  document.addEventListener('keydown', event => {
    const target = event.target;
    const typing = target && (target.matches('input,textarea,select,button,[contenteditable="true"]'));
@@ -129,7 +129,7 @@
      el.addEventListener('pointerenter',()=>{
        const label=el.dataset.cursor || (el.matches('[data-filmstrip]')?'DRAG':'');
        cursorLabel.textContent=label;
-       cursor.classList.toggle('is-active',Boolean(label));
+       cursor.classList.toggle('is-active',Boolean(label));\n       cursor.classList.toggle('is-link',el.matches('a,button'));
      });
      el.addEventListener('pointerleave',()=>cursor.classList.remove('is-active'));
    });
