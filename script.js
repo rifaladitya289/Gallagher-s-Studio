@@ -315,6 +315,32 @@
    }
    previousScroll=current;
  },{passive:true});
+
+ // Scroll-linked parallax: independent translate keeps pointer tilt transforms intact.
+ const parallaxNodes = $$('.object-frame,.object-orbit,.poster-art>img:first-of-type,.poster-art .poster-art-inset,.poster-orbit,.poster-backdrop,.scene-backdrop-word');
+ let parallaxFrame = 0;
+ const updateParallax = () => {
+   parallaxFrame = 0;
+   if (reduced || !cinema) return;
+   const vh = window.innerHeight || 1;
+   scenes.forEach(scene => {
+     const rect = scene.getBoundingClientRect();
+     const offset = (rect.top + rect.height * .5 - vh * .5) / vh;
+     const shift = Math.max(-24, Math.min(24, -offset * 28));
+     parallaxNodes.filter(node => scene.contains(node)).forEach((node,index) => {
+       const factor = node.classList.contains('poster-art-inset') ? 1.25 : (index % 2 ? .72 : 1);
+       node.style.setProperty('--parallax-y', (shift * factor).toFixed(1) + 'px');
+     });
+   });
+ };
+ const requestParallax = () => {
+   if (parallaxFrame || reduced) return;
+   parallaxFrame = requestAnimationFrame(updateParallax);
+ };
+ cinema?.addEventListener('scroll', requestParallax, {passive:true});
+ window.addEventListener('resize', requestParallax, {passive:true});
+ requestParallax();
+
  syncDock();
  const chapterSearch=$('#chapter-search');
  chapterSearch?.addEventListener('input',()=>{const q=chapterSearch.value.trim().toLocaleLowerCase();$('[data-chapter-link]',menuPanel).forEach(link=>{link.hidden=!link.textContent.toLocaleLowerCase().includes(q);});});
