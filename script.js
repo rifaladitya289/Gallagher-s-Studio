@@ -241,4 +241,77 @@
    link.textContent=address;
    link.href='mailto:'+address;
  });
+ // Single-page app sheets, hash history, island context and dock state.
+ const dock=$('.floating-dock');
+ const dockItems=$$('.dock-item',dock);
+ const islandTitle=$('[data-island-title]');
+ const sceneNames=['OPENING','KARYA YANG BICARA','CARA KERJA','PRINSIP DI BALIK KARYA','PERJALANAN','NGOBROL YUK'];
+ let activeSheet=null;
+ let lastSheetTrigger=null;
+ const openSheet=id=>{
+   const sheet=$('#'+id);
+   if(!sheet)return;
+   lastSheetTrigger=document.activeElement;
+   sheet.classList.add('is-open');
+   sheet.setAttribute('aria-hidden','false');
+   document.body.classList.add('sheet-open');
+   activeSheet=sheet;
+   if(location.hash!=='#'+id)history.pushState({sheet:id},'', '#'+id);
+   sheet.querySelector('.sheet-close')?.focus();
+ };
+ const closeSheet=(updateHistory=true)=>{
+   if(!activeSheet)return;
+   activeSheet.classList.remove('is-open');
+   activeSheet.setAttribute('aria-hidden','true');
+   document.body.classList.remove('sheet-open');
+   activeSheet=null;
+   if(updateHistory&&location.hash.startsWith('#sheet-'))history.pushState({},'',location.pathname+location.search);
+   lastSheetTrigger?.focus?.();
+ };
+ $$('[data-open-sheet]').forEach(btn=>btn.addEventListener('click',()=>openSheet(btn.dataset.openSheet)));
+ $$('[data-close-sheet]').forEach(btn=>btn.addEventListener('click',()=>closeSheet()));
+ window.addEventListener('popstate',()=>{
+   if(activeSheet)closeSheet(false);
+   const id=location.hash.slice(1);
+   if(id.startsWith('sheet-'))openSheet(id);
+ });
+ if(location.hash.startsWith('#sheet-'))openSheet(location.hash.slice(1));
+ document.addEventListener('keydown',event=>{
+   if(event.key==='Escape'&&activeSheet){closeSheet();return;}
+   if(event.key.toLowerCase()==='k'&&!event.target.matches('input,textarea,select,[contenteditable="true"]')){
+     event.preventDefault();
+     setMenu(!menuPanel?.classList.contains('is-open'));
+   }
+ });
+ const syncDock=()=>{
+   const n=Math.max(0,activeScene);
+   dockItems.forEach(item=>{
+     const target=item.getAttribute('href')?.slice(1);
+     const sceneIndex=scenes.findIndex(scene=>scene.id===target);
+     const active=sceneIndex===n||(item.dataset.openSheet==='sheet-about'&&n===4);
+     item.classList.toggle('is-active',active);
+     if(active)item.setAttribute('aria-current','location');else item.removeAttribute('aria-current');
+   });
+   if(islandTitle)islandTitle.textContent=sceneNames[n]||'GALLAGHER’S STUDIO';
+ };
+ const dockObserver=new IntersectionObserver(entries=>{
+   entries.forEach(entry=>{
+     if(entry.isIntersecting){
+       const n=scenes.indexOf(entry.target);
+       if(n>=0){activeScene=n;syncDock();}
+     }
+   });
+ },{root:cinema,threshold:.6});
+ scenes.forEach(scene=>dockObserver.observe(scene));
+ let previousScroll=0;
+ cinema?.addEventListener('scroll',()=>{
+   const current=cinema.scrollTop;
+   if(dock){
+     if(current>previousScroll+5)dock.classList.add('dock-hidden');
+     else if(current<previousScroll-5)dock.classList.remove('dock-hidden');
+   }
+   previousScroll=current;
+ },{passive:true});
+ syncDock();
+
 })();
