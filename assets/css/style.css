@@ -214,3 +214,21 @@ button { font: inherit; }
 .stx-image-link:hover img { transform:scale(1.015); }
 .stx-real-gallery figcaption { display:grid; gap:7px; padding-top:14px; }
 @media (prefers-reduced-motion:reduce) { .stx-image-link img { transition:none; } }
+
+
+/* Phase 6 — accessibility and finishing */
+:focus-visible { outline:2px solid var(--blue-bright); outline-offset:4px; }
+::selection { color:#080b12; background:#9bb9e8; }
+html { scrollbar-color:#344766 #080b12; }
+img { max-width:100%; }
+a,button { -webkit-tap-highlight-color:transparent; }
+button { color:inherit; }
+.primary-nav a:focus-visible,.text-link:focus-visible,.project-demo-link:focus-visible { border-radius:2px; }
+.site-header { backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); }
+.project-card,.principle-card,.service-card { border-radius:2px; }
+.project-visual { border-radius:1px; }
+.reveal-ready .reveal-on-scroll { opacity:0; transform:translateY(18px); transition:opacity .65s ease,transform .65s ease; }
+.reveal-ready .reveal-on-scroll.is-visible { opacity:1; transform:translateY(0); }
+@media (prefers-reduced-motion:reduce) {
+  .reveal-ready .reveal-on-scroll { opacity:1; transform:none; transition:none; }
+}
