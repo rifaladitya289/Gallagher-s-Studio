@@ -811,3 +811,31 @@ body {
  .case-cta { margin: 15px 20px 50px; padding: 30px 24px; }
  .filter-chip { padding: 10px 14px; }
 }
+
+
+/* Gallagher's Studio — refined contrast navigation */
+.site-header {
+  position: sticky; top: 0; z-index: 50; min-height: 82px;
+  background: rgba(8,11,18,.82); border-bottom: 1px solid rgba(190,208,238,.10);
+  -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
+  transition: min-height .25s ease, background .25s ease, border-color .25s ease;
+}
+.site-header.is-scrolled { min-height: 72px; background: rgba(8,11,18,.94); border-bottom-color: rgba(145,180,242,.22); }
+.primary-nav { color: #c5cede; }
+.primary-nav a { position: relative; color: #c5cede; font-weight: 600; letter-spacing: .015em; transition: color .2s ease, opacity .2s ease; }
+.primary-nav a:not(.nav-cta)::after { content:""; position:absolute; left:0; right:100%; bottom:-9px; height:2px; background:var(--blue-bright); transition:right .24s ease; }
+.primary-nav a:not(.nav-cta):hover,.primary-nav a:not(.nav-cta):focus-visible,
+.primary-nav a[aria-current="page"]:not(.nav-cta),.primary-nav a.is-section-active:not(.nav-cta) { color:#fff; }
+.primary-nav a:not(.nav-cta):hover::after,.primary-nav a:not(.nav-cta):focus-visible::after,
+.primary-nav a[aria-current="page"]:not(.nav-cta)::after,.primary-nav a.is-section-active:not(.nav-cta)::after { right:0; }
+.primary-nav .nav-cta { color:#eaf1ff; border:1px solid rgba(145,180,242,.58); background:rgba(91,139,224,.12); padding:10px 16px; transition:background .2s ease,border-color .2s ease,transform .2s ease; }
+.primary-nav .nav-cta:hover { color:#fff; background:rgba(91,139,224,.24); border-color:rgba(165,195,248,.9); }
+.menu-toggle { border-color:rgba(145,180,242,.4); border-radius:50%; background:rgba(91,139,224,.08); }
+.menu-toggle:hover { background:rgba(91,139,224,.18); }
+@media(max-width:700px) {
+ .site-header { min-height:74px; } .site-header.is-scrolled { min-height:68px; }
+ .primary-nav { background:rgba(8,11,18,.97); border-bottom:1px solid rgba(145,180,242,.24); box-shadow:0 22px 38px rgba(0,0,0,.28); }
+ .primary-nav a:not(.nav-cta)::after { display:none; }
+ .primary-nav a[aria-current="page"]:not(.nav-cta),.primary-nav a.is-section-active:not(.nav-cta) { color:var(--blue-bright); }
+}
+@media(prefers-reduced-motion:reduce) { .site-header,.primary-nav a,.primary-nav a::after { transition:none!important; } }
