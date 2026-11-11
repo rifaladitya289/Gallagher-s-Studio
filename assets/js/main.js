@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         preview.classList.add("is-loading");
         image.addEventListener("load", finishLoading, { once: true });
-        image.addEventListener("error", finishLoading, { once: true });
+        image.addEventListener("error", () => { finishLoading(); preview.classList.add("image-failed"); }, { once: true });
       }
     }
   });
