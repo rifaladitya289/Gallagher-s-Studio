@@ -41,11 +41,19 @@
         <p>Every project begins with a question, grows through exploration and takes shape with purpose.</p>
       </section>
       <section class="section-wrap">
-        <div class="project-grid projects-grid-single"><article class="project-card">
-          <a class="project-preview" href="studytrack.html" aria-label="Explore StudyTrack X case study"><img src="assets/images/stx-home-opt.jpg" alt="StudyTrack X home dashboard screenshot" loading="lazy"><span class="preview-label">FEATURED PROJECT / 2026</span></a>
-          <div class="project-meta"><span>01 / EDUCATION</span><span>2026</span></div>
-          <div class="project-card-bottom"><div><h3>StudyTrack X</h3><p>A student-focused digital platform designed to bring learning tools and everyday school activities into one place.</p><a class="project-demo-link" href="https://rifaladitya289.github.io/studytrack.v26.00/" target="_blank" rel="noopener noreferrer">Try the live website <span>↗</span></a></div><a class="project-arrow" href="studytrack.html" aria-label="View StudyTrack X case study">↗</a></div>
-        </article></div>
+        <div class="project-filter" role="group" aria-label="Filter projects">
+          <button type="button" class="filter-chip is-active" data-filter="all" aria-pressed="true">All work <span>01</span></button>
+          <button type="button" class="filter-chip" data-filter="education" aria-pressed="false">Education <span>01</span></button>
+        </div>
+        <p class="filter-status" id="filter-status" aria-live="polite">Showing 1 project</p>
+        <div class="project-grid projects-grid-single" id="project-list">
+          <article class="project-card filterable-project" data-category="education">
+            <a class="project-preview" href="studytrack.html" aria-label="Explore StudyTrack X case study"><img src="assets/images/stx-home-opt.jpg" alt="StudyTrack X home dashboard screenshot" loading="lazy"><span class="preview-label">FEATURED PROJECT / 2026</span></a>
+            <div class="project-meta"><span>01 / EDUCATION</span><span>2026</span></div>
+            <div class="project-card-bottom"><div><h3>StudyTrack X</h3><p>A student-focused digital platform designed to bring learning tools and everyday school activities into one place.</p><a class="project-demo-link" href="https://rifaladitya289.github.io/studytrack.v26.00/" target="_blank" rel="noopener noreferrer">Try the live website <span>↗</span></a></div><a class="project-arrow" href="studytrack.html" aria-label="View StudyTrack X case study">↗</a></div>
+          </article>
+        </div>
+        <p class="projects-coming">More selected work will appear here as projects are ready to be presented.</p>
         <a class="back-link" href="index.html">← Back to homepage</a>
       </section>
     </main>
