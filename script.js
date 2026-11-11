@@ -160,7 +160,8 @@
      el.addEventListener('pointerenter',()=>{
        const label=el.dataset.cursor || (el.matches('[data-filmstrip]')?'DRAG':'');
        cursorLabel.textContent=label;
-       cursor.classList.toggle('is-active',Boolean(label));\n       cursor.classList.toggle('is-link',el.matches('a,button'));
+       cursor.classList.toggle('is-active',Boolean(label));
+       cursor.classList.toggle('is-link',el.matches('a,button'));
      });
      el.addEventListener('pointerleave',()=>cursor.classList.remove('is-active'));
    });
@@ -274,8 +275,10 @@
    if(activeSheet)closeSheet(false);
    const id=location.hash.slice(1);
    if(id.startsWith('sheet-'))openSheet(id);
+   else if(id.startsWith('scene-'))document.getElementById(id)?.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});
  });
- if(location.hash.startsWith('#sheet-'))openSheet(location.hash.slice(1));\n else if(location.hash.startsWith('#scene-'))document.getElementById(location.hash.slice(1))?.scrollIntoView({block:'start'});
+ if(location.hash.startsWith('#sheet-'))openSheet(location.hash.slice(1));
+ else if(location.hash.startsWith('#scene-'))document.getElementById(location.hash.slice(1))?.scrollIntoView({block:'start'});
  document.addEventListener('keydown',event=>{
    if(event.key==='Escape'&&activeSheet){closeSheet();return;}
    if(event.key.toLowerCase()==='k'&&!event.target.matches('input,textarea,select,[contenteditable="true"]')){
@@ -313,5 +316,7 @@
    previousScroll=current;
  },{passive:true});
  syncDock();
+ const chapterSearch=$('#chapter-search');
+ chapterSearch?.addEventListener('input',()=>{const q=chapterSearch.value.trim().toLocaleLowerCase();$('[data-chapter-link]',menuPanel).forEach(link=>{link.hidden=!link.textContent.toLocaleLowerCase().includes(q);});});
 
 })();
