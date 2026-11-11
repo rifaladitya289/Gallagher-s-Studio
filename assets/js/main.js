@@ -30,10 +30,21 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.prepend(skipLink);
   }
 
-  // Decode images asynchronously and defer off-screen media.
+  // Decode images asynchronously and show a shimmer skeleton only while previews load.
   document.querySelectorAll("img").forEach((image) => {
     if (!image.hasAttribute("decoding")) image.setAttribute("decoding", "async");
     if (!image.closest(".hero") && !image.hasAttribute("loading")) image.setAttribute("loading", "lazy");
+    const preview = image.closest(".project-preview,.stx-image-link");
+    if (preview) {
+      const finishLoading = () => preview.classList.remove("is-loading");
+      if (image.complete && image.naturalWidth > 0) {
+        finishLoading();
+      } else {
+        preview.classList.add("is-loading");
+        image.addEventListener("load", finishLoading, { once: true });
+        image.addEventListener("error", finishLoading, { once: true });
+      }
+    }
   });
 
   const year = document.querySelector("#year");
