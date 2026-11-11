@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="id">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#080b12">
 <title>Gallagher's Studio — A Cinematic Digital Portfolio</title>
@@ -16,11 +16,12 @@
 <body>
 <a class="skip-link" href="#scene-01">Skip cinematic intro</a>
 <div class="film-loader" aria-live="polite" aria-label="Loading experience"><span class="loader-brand">G.</span><span class="loader-count" data-loader-count>00</span><span class="loader-label">PREPARING THE EXPERIENCE</span><span class="loader-track"><i data-loader-bar></i></span></div>
-<header class="film-hud" aria-label="Experience controls">
-<a class="hud-mark" href="#scene-01" aria-label="Gallagher's Studio — opening scene">G.</a>
-<div class="hud-progress" aria-label="Scene progress"><span data-scene-count>01 <i>/ 06</i></span><span class="progress-rail"><i data-progress></i></span></div>
-<button class="hud-menu" type="button" aria-expanded="false" aria-controls="scene-index" aria-label="Open scene index"><span></span><span></span></button>
-<a class="hud-talk" href="#scene-06">LET’S TALK <span>↗</span></a>
+<header class="film-hud island-shell" aria-label="Kontrol pengalaman">
+ <div class="floating-island" id="floating-island">
+  <span class="island-ring" aria-hidden="true"><i data-progress></i></span>
+  <span class="island-context"><b data-scene-count>01 <i>/ 06</i></b><span data-island-title>KARYA YANG BICARA</span></span>
+  <button class="hud-menu island-menu" type="button" aria-expanded="false" aria-controls="scene-index" aria-label="Buka daftar bab"><span></span><span></span></button>
+ </div>
 </header>
 <aside class="scene-index" id="scene-index" aria-hidden="true">
 <div class="index-top"><span>GALLAGHER’S STUDIO / INDEX</span><button type="button" class="index-close" aria-label="Close scene index">CLOSE ×</button></div>
@@ -32,7 +33,7 @@
 <a href="#scene-05"><span>05</span> THE JOURNEY <i>↗</i></a>
 <a href="#scene-06"><span>06</span> FINAL SCENE <i>↗</i></a>
 </nav>
-<div class="index-bottom"><a href="projects.html">PROJECT ARCHIVE ↗</a><a href="about.html">ABOUT THE CREATOR ↗</a><a href="services.html">SERVICES ↗</a><a href="studytrack.html">STUDYTRACK CASE STUDY ↗</a></div>
+<div class="index-bottom"><span>GALLAGHER’S STUDIO · RIFAL ADITYA</span><span>DESIGNED TO CREATE. BUILT TO INSPIRE.</span></div>
 </aside>
 <main id="main" class="cinema">
 <section class="scene scene-opening is-active" id="scene-01" data-scene="01" aria-labelledby="opening-title">
@@ -63,7 +64,7 @@
 <div class="poster-details"><span>PROJECT FILE / 2026</span><span>EDTECH</span><span>WEB APP</span><span>STUDENT TOOLS</span></div>
 <p class="poster-description">A student-focused web platform that brings learning tools and everyday school activities into one place.</p>
 <a class="poster-cta magnetic" href="https://rifaladitya289.github.io/studytrack.v26.00/" target="_blank" rel="noopener noreferrer" data-cursor="VIEW">WATCH THE LIVE PROJECT <span>↗</span></a>
-<a class="poster-secondary" href="studytrack.html">READ THE CASE STUDY ↗</a>
+<button class="poster-secondary" type="button" data-open-sheet="sheet-work">READ THE CASE STUDY ↗</button>
 </div>
 <div class="poster-art" data-tilt>
 <div class="poster-orbit"></div><img src="assets/images/stx-profile-opt.jpg" alt="StudyTrack X student profile interface" loading="lazy" width="1200" height="800"><img class="poster-art-inset" src="assets/images/stx-wallet-opt.jpg" alt="StudyTrack X Student Wallet interface" loading="lazy" width="1200" height="800"><span class="poster-stamp">ONE<br>REAL<br>PRODUCT</span>
@@ -90,7 +91,7 @@
 <div class="philosophy-layout">
 <div class="philosophy-statement"><p class="scene-kicker">THE STUDIO PRINCIPLE</p><h2 class="display" id="philosophy-title">LESS NOISE.<br><span>MORE</span><br>MEANING<span class="title-period">.</span></h2><p class="philosophy-quote">“Designed to create. Built to inspire.”</p></div>
 <div class="service-console"><p class="scene-kicker">SERVICES / SELECT A DISCIPLINE</p>
-<a class="service-line" href="services.html"><span>01</span><strong>DASHBOARD & WEB APP DESIGN</strong><i>UI / UX ↗</i></a>
+<a class="service-line" href="#scene-04"><span>01</span><strong>DASHBOARD & WEB APP DESIGN</strong><i>UI / UX ↗</i></a>
 <a class="service-line" href="services.html"><span>02</span><strong>RESPONSIVE WEBSITE DESIGN</strong><i>WEB ↗</i></a>
 <a class="service-line" href="services.html"><span>03</span><strong>FRONT-END DEVELOPMENT</strong><i>HTML / CSS / JS ↗</i></a>
 <a class="service-all" href="services.html">EXPLORE SERVICE DETAILS ↗</a>
@@ -101,7 +102,7 @@
 <section class="scene scene-journey" id="scene-05" data-scene="05" aria-labelledby="journey-title">
 <div class="scene-meta"><span>SCENE 05 / THE JOURNEY</span><span>ROLLING CREDITS</span></div>
 <div class="credits-layout">
-<div class="credits-intro"><p class="scene-kicker">A WORK IN PROGRESS</p><h2 class="display" id="journey-title">THE<br><span>JOURNEY.</span></h2><p>Not a list of claims. Just the work, the direction, and what’s real today.</p><a href="about.html" class="credits-link">MEET THE CREATOR ↗</a></div>
+<div class="credits-intro"><p class="scene-kicker">A WORK IN PROGRESS</p><h2 class="display" id="journey-title">THE<br><span>JOURNEY.</span></h2><p>Not a list of claims. Just the work, the direction, and what’s real today.</p><button type="button" class="credits-link" data-open-sheet="sheet-about">MEET THE CREATOR ↗</button></div>
 <div class="credits-roll">
 <div class="credit-entry"><span>01 / THE CREATOR</span><strong>RIFAL ADITYA</strong><p>Founder and creator of Gallagher’s Studio.</p></div>
 <div class="credit-entry"><span>02 / THE STUDIO</span><strong>GALLAGHER’S STUDIO</strong><p>Independent digital studio based in Indonesia.</p></div>
@@ -129,5 +130,16 @@
 <div class="scene-bottom"><span>THANK YOU FOR WATCHING</span><a href="#scene-01">REPLAY FROM THE BEGINNING ↑</a></div>
 </section>
 </main>
+<div class="dock-wrap" aria-label="Navigasi cepat">
+ <nav class="floating-dock" aria-label="Bab utama">
+  <a class="dock-item is-active" href="#scene-02" aria-label="Karya yang bicara" aria-current="location" title="Karya yang bicara"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18.5 9.2 5.5l4.1 8.2 2.2-4.1 5.5 9H3Z"/><path d="M7 18.5 12 9l4.5 9.5"/></svg><span>KARYA</span></a>
+  <a class="dock-item" href="#scene-03" aria-label="Cara kerja" title="Cara kerja"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h5v5H4zM15 13h5v5h-5zM9 8.5h4a2 2 0 0 1 2 2V13M6.5 11v5a2 2 0 0 0 2 2H15"/></svg><span>PROSES</span></a>
+  <button class="dock-item" type="button" data-open-sheet="sheet-about" aria-label="Tentang Rifal" title="Tentang Rifal"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c.7-3.4 3.1-5.2 7-5.2s6.3 1.8 7 5.2"/></svg><span>AKU</span></button>
+  <a class="dock-item dock-contact" href="#scene-06" aria-label="Ngobrol yuk" title="Ngobrol yuk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16v11H11l-5 3v-3H4z"/><path d="M8 10h8M8 13h5"/></svg><span>NGOBROL</span></a>
+ </nav>
+</div>
+<section class="bottom-sheet" id="sheet-work" aria-hidden="true" aria-labelledby="sheet-work-title"><div class="sheet-scrim" data-close-sheet></div><div class="sheet-panel" role="dialog" aria-modal="true"><div class="sheet-grip"></div><button class="sheet-close" type="button" data-close-sheet aria-label="Tutup">×</button><p class="scene-kicker">01 / CASE STUDY · EDTECH</p><h2 class="display" id="sheet-work-title">STUDYTRACK <span>X.</span></h2><img src="assets/images/stx-home-opt.jpg" alt="Tampilan dashboard StudyTrack X" loading="lazy" width="1200" height="800"><div class="sheet-grid"><article><h3>MASALAH</h3><p>Pelajar dapat perlu berpindah di antara beberapa alat untuk jadwal, materi, tugas, dan aktivitas sekolah. StudyTrack X menyatukan sejumlah alur tersebut dalam satu platform browser.</p></article><article><h3>PERANKU</h3><p>StudyTrack X adalah proyek yang aku buat dan kembangkan. Rincian tanggung jawab lebih lanjut akan ditambahkan seiring dokumentasi proyek berkembang.</p></article><article><h3>PROSES</h3><p>Menentukan kebutuhan fitur, menyusun struktur antarmuka, membangun front-end, lalu meninjau pengalaman live dan menyempurnakannya.</p></article><article><h3>TEKNOLOGI</h3><p>HTML, CSS, JavaScript. Versi yang diaudit menggunakan localStorage untuk banyak data akun dan fitur. Tidak mengklaim backend cloud terhubung.</p></article><article><h3>FITUR</h3><p>Akun, profil, jadwal, materi, tugas, agenda, kuis dari catatan, Student Wallet, kalkulator, konverter, timer, stopwatch, dan fitur kelas.</p></article><article><h3>HASIL</h3><p>StudyTrack X tersedia sebagai proyek web live. Belum ada angka penggunaan atau dampak terukur yang diverifikasi, jadi tidak ada metrik yang diklaim.</p></article></div><div class="sheet-gallery"><img src="assets/images/stx-profile-opt.jpg" alt="Antarmuka profil StudyTrack X" loading="lazy"><img src="assets/images/stx-wallet-opt.jpg" alt="Antarmuka Student Wallet" loading="lazy"></div><a class="poster-cta" href="https://rifaladitya289.github.io/studytrack.v26.00/" target="_blank" rel="noopener noreferrer">COBA STUDYTRACK X ↗</a></div></section>
+<section class="bottom-sheet" id="sheet-about" aria-hidden="true" aria-labelledby="sheet-about-title"><div class="sheet-scrim" data-close-sheet></div><div class="sheet-panel" role="dialog" aria-modal="true"><div class="sheet-grip"></div><button class="sheet-close" type="button" data-close-sheet aria-label="Tutup">×</button><p class="scene-kicker">SIAPA DI BALIK STUDIO / THE CREATOR</p><h2 class="display" id="sheet-about-title">RIFAL <span>ADITYA.</span></h2><p>Gallagher’s Studio dipimpin oleh Rifal Aditya, kreator independen dari Indonesia. Fokus saat ini adalah merancang dan membangun dashboard, website, serta alat digital yang berorientasi pada kebutuhan pengguna.</p><div class="skill-list"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>UI / UX</span><span>Responsive Design</span></div><h3>PRINSIP STUDIO</h3><blockquote>“Designed to create. Built to inspire.”</blockquote><p>Testimoni, logo klien, dan klaim kolaborasi akan ditambahkan hanya jika sudah ada bukti dan izin yang sesuai.</p></div></section>
+<section class="bottom-sheet" id="sheet-services" aria-hidden="true" aria-labelledby="sheet-services-title"><div class="sheet-scrim" data-close-sheet></div><div class="sheet-panel" role="dialog" aria-modal="true"><div class="sheet-grip"></div><button class="sheet-close" type="button" data-close-sheet aria-label="Tutup">×</button><p class="scene-kicker">LAYANAN / WHAT I CAN BUILD</p><h2 class="display" id="sheet-services-title">IDEA TO <span>INTERFACE.</span></h2><div class="sheet-grid"><article><h3>01 / UI & UX</h3><p>Struktur halaman, alur pengguna, wireframe, arah visual, dan desain responsif. Deliverable disepakati dalam ruang lingkup tertulis.</p></article><article><h3>02 / WEBSITE</h3><p>Hierarki konten, layout visual, tampilan responsif, metadata SEO dasar, dan pemeriksaan aksesibilitas.</p></article><article><h3>03 / FRONT-END</h3><p>HTML semantik, CSS responsif, interaksi JavaScript, setup GitHub Pages, dan pemeriksaan browser.</p></article><article><h3>ALUR KERJA</h3><p>Discover → Design → Build → Launch. Timeline dan harga ditentukan setelah ruang lingkup disepakati. Harga: request a quote.</p></article></div><h3>PERTANYAAN UMUM</h3><details><summary>Berapa biaya proyek?</summary><p>Penawaran dibuat setelah kebutuhan, kompleksitas, dan deliverable dipahami.</p></details><details><summary>Berapa lama pengerjaannya?</summary><p>Estimasi waktu ditentukan setelah ruang lingkup, materi, dan putaran revisi jelas.</p></details><details><summary>Bisa mengembangkan website yang sudah ada?</summary><p>Bisa, setelah meninjau codebase, hosting, dan perubahan yang dibutuhkan.</p></details><details><summary>Apa yang dibutuhkan untuk mulai?</summary><p>Deskripsi masalah, pengguna, fitur yang diinginkan, deadline, dan referensi.</p></details></div></section>
 <div class="cursor-system" aria-hidden="true"><span class="cursor-core"></span><span class="cursor-label"></span></div>
 </body></html>
