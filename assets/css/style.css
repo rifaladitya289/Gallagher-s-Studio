@@ -1691,3 +1691,21 @@ main section.is-visible .motion-stagger-group > *:nth-child(5) { animation-delay
 @media(prefers-reduced-motion:reduce) {
   main section.is-visible .motion-stagger-group > * { animation:none!important; }
 }
+
+
+/* Signature motion: masked typography, image depth and page transitions */
+.mask-word-clip{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em;margin-bottom:-.08em}
+.mask-word{display:inline-block;transform:translate3d(0,112%,0);opacity:.35;transition:transform .9s cubic-bezier(.2,.72,.2,1),opacity .8s ease;transition-delay:var(--mask-delay,0ms)}
+.mask-reveal.is-mask-visible .mask-word{transform:translate3d(0,0,0);opacity:1}
+.reveal-on-scroll .mask-word{transition-delay:calc(var(--mask-delay,0ms) + 90ms)}
+.project-preview,.stx-image-link{overflow:hidden;isolation:isolate}
+.project-preview img,.stx-image-link img,.stx-screen-card img{transform:translate3d(0,var(--parallax-y,0px),0) scale(1.045);will-change:transform;transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .8s ease}
+.project-preview:hover img,.stx-image-link:hover img{transform:translate3d(0,var(--parallax-y,0px),0) scale(1.09)}
+.studio-transition{position:fixed;inset:0;z-index:9999;pointer-events:none;background:var(--surface);transform:scaleY(0);transform-origin:bottom;transition:transform .62s cubic-bezier(.76,0,.18,1)}
+.studio-transition::before{content:"GALLAGHER'S STUDIO";position:absolute;left:clamp(24px,7vw,110px);bottom:clamp(28px,7vh,76px);color:var(--blue-bright);font:700 10px var(--display);letter-spacing:.24em;opacity:0;transform:translateY(12px);transition:opacity .25s ease .18s,transform .35s ease .18s}
+.studio-transition.is-active{transform:scaleY(1);transform-origin:bottom}
+.studio-transition.is-active::before{opacity:1;transform:translateY(0)}
+.page-shell{animation:studio-page-enter .72s cubic-bezier(.2,.7,.2,1) both}
+@keyframes studio-page-enter{from{opacity:.45;transform:translate3d(0,16px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+@media(max-width:700px){.project-preview img,.stx-image-link img,.stx-screen-card img{transform:translate3d(0,calc(var(--parallax-y,0px)*.55),0) scale(1.035)}}
+@media(prefers-reduced-motion:reduce){.mask-word{transform:none!important;opacity:1!important;transition:none!important}.studio-transition{display:none}.page-shell{animation:none}.project-preview img,.stx-image-link img,.stx-screen-card img{transform:none!important;will-change:auto}}
