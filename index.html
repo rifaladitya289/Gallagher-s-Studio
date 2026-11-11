@@ -98,6 +98,22 @@
       <section class="contact-section section-wrap" id="contact">
         <p class="eyebrow">HAVE SOMETHING IN MIND?</p>
         <h2>Let's make<br><span>it meaningful.</span></h2>
+        <p class="contact-intro">Tell us a little about your idea. Your email app will open with the details ready to send.</p>
+        <form class="inquiry-form" id="inquiry-form" data-recipient="rifaladitya812@gmail.com">
+          <div class="form-row">
+            <label>Your name<input name="name" autocomplete="name" required maxlength="80" placeholder="Name"></label>
+            <label>Email address<input name="email" type="email" autocomplete="email" required maxlength="120" placeholder="you@example.com"></label>
+          </div>
+          <label>What do you need?
+            <select name="project" required>
+              <option value="">Choose a service</option>
+              <option>UI / UX Design</option><option>Web Design</option><option>Web Development</option><option>Other collaboration</option>
+            </select>
+          </label>
+          <label>Project details<textarea name="message" rows="5" required maxlength="2000" placeholder="Tell us about your goals, idea and timeline..."></textarea></label>
+          <button class="button-link button-primary inquiry-submit" type="submit">Prepare inquiry email ↗</button>
+          <p class="form-note" id="form-status" role="status">This form uses your device's email app; it does not send or store data on this website.</p>
+        </form>
         <a class="contact-link" href="mailto:rifaladitya812@gmail.com">rifaladitya812@gmail.com <span>↗</span></a>
       </section>
     </main>
