@@ -43,6 +43,9 @@
    menuPanel.classList.toggle('is-open', open);
    menuPanel.setAttribute('aria-hidden', String(!open));
    document.body.classList.toggle('menu-open', open);
+   if (cinema) cinema.inert = open;
+   const mainContent = $('main');
+   if (mainContent) mainContent.inert = open;
    if (open && closeButton) closeButton.focus();
    if (!open && menuButton) menuButton.focus();
  };
@@ -84,8 +87,18 @@
    const target = event.target;
    const typing = target && (target.matches('input,textarea,select,button,[contenteditable="true"]'));
    if (event.key === 'Escape' && menuPanel?.classList.contains('is-open')) { setMenu(false); return; }
-   if (typing || menuPanel?.classList.contains('is-open') || !scenes.length) return;
+   if (typing) return;
+   if (menuPanel?.classList.contains('is-open')) {
+     if (event.key === 'Tab') {
+       const focusables = $('a[href],button:not([disabled])', menuPanel);
+       const first = focusables[0], last = focusables[focusables.length-1];
+       if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+       else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+     }
+     return;
+   }
    if (event.key.toLowerCase() === 'm') { event.preventDefault(); setMenu(true); return; }
+   if (!scenes.length) return;
    if (/^[1-6]$/.test(event.key)) { event.preventDefault(); goToScene(Number(event.key)-1); return; }
    if (['ArrowDown','ArrowRight','PageDown'].includes(event.key)) { event.preventDefault(); goToScene(activeScene+1); }
    if (['ArrowUp','ArrowLeft','PageUp'].includes(event.key)) { event.preventDefault(); goToScene(activeScene-1); }
