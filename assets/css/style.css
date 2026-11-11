@@ -907,3 +907,13 @@ input,select,textarea { max-width:100%; }
 
 /* Keep sticky navigation working without clipping page effects. */
 .page-shell { overflow:clip; }
+
+/* Clear first-step actions in the homepage hero. */
+.hero-actions { display:flex; align-items:center; flex-wrap:wrap; gap:18px 28px; margin-top:28px; }
+.hero-actions .button-link { display:inline-flex; align-items:center; gap:12px; }
+.hero-actions .button-link span,.hero-actions .text-link span { transition:transform .2s ease; }
+.hero-actions .button-link:hover span,.hero-actions .text-link:hover span { transform:translate(2px,-2px); }
+@media(max-width:680px) {
+  .hero-actions { gap:16px 22px; margin-top:24px; }
+  .hero-actions .button-link { min-height:48px; }
+}
