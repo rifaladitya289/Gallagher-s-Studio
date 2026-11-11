@@ -148,3 +148,38 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .hero-product small{z-index:3;background:rgba(8,11,18,.78);padding:5px 8px}
 .cursor-dot,.cursor-trail{display:block}
 @media(hover:none),(pointer:coarse){.cursor-dot,.cursor-trail{display:none!important}}
+
+
+/* Motion and interaction refinement */
+:root{
+ --line:rgba(207,220,242,.18);
+ --accent-wash:rgba(120,155,208,.10);
+ --accent-ring:rgba(155,185,232,.34);
+ --shadow-deep:rgba(0,0,0,.42);
+ --header-glass:rgba(8,11,18,.90);
+}
+.site-header{background:var(--header-glass)}
+.primary-nav a{min-height:44px;display:inline-flex;align-items:center}
+.numbered-row:before{content:"";width:2px;height:0;background:var(--accent-strong);position:absolute;left:0;top:0;transition:height .25s ease}
+.numbered-row{position:relative}
+.numbered-row:hover:before,.numbered-row:focus-within:before{height:100%}
+.project-image{isolation:isolate}
+.project-image:before{content:"VIEW CASE STUDY ↗";position:absolute;z-index:3;right:20px;bottom:20px;padding:10px 13px;background:var(--accent-strong);color:var(--bg);font-size:9px;font-weight:700;letter-spacing:.12em;opacity:0;transform:translateY(8px);transition:opacity .25s ease,transform .25s ease}
+.project-image:hover:before,.project-image:focus-visible:before{opacity:1;transform:translateY(0)}
+.project-image img,.hero-product img,.case-image img,.screenshot-grid img{will-change:transform}
+.display span{will-change:transform,opacity}
+body.page-enter{animation:pageEnter .42s ease both}
+body.page-leave{opacity:0;transform:translateY(8px);transition:opacity .22s ease,transform .22s ease}
+@keyframes pageEnter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(hover:hover) and (pointer:fine){
+ .button,.nav-cta,.text-link,.primary-nav a{transition:color .24s ease,background .24s ease,border-color .24s ease,transform .24s ease}
+ .project-image:hover img{transform:scale(1.045)}
+}
+@media(max-width:680px){
+ .project-image:before{opacity:1;transform:none;font-size:8px}
+ .hero-product img{transform:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+ body.page-enter,body.page-leave{animation:none;transition:none}
+ .project-image:before{display:none}
+}
