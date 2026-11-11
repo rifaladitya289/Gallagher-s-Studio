@@ -237,4 +237,32 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+
+  // Highlight the navigation item for the section currently in view.
+  const sectionLinks = Array.from(document.querySelectorAll('.primary-nav a[href*="#"]'));
+  const sectionTargets = sectionLinks.map((link) => {
+    const href = link.getAttribute("href") || "";
+    const hashIndex = href.indexOf("#");
+    if (hashIndex < 0) return null;
+    const targetPath = href.slice(0, hashIndex);
+    const current = window.location.pathname.split("/").pop() || "index.html";
+    const samePage = !targetPath || targetPath === current || (targetPath === "index.html" && current === "");
+    const target = samePage ? document.getElementById(href.slice(hashIndex + 1)) : null;
+    return target ? { link, target } : null;
+  }).filter(Boolean);
+  if ("IntersectionObserver" in window && sectionTargets.length) {
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        sectionTargets.forEach(({ link, target }) => {
+          const active = target === entry.target;
+          link.classList.toggle("is-section-active", active);
+          if (active) link.setAttribute("aria-current", "location");
+          else if (link.getAttribute("aria-current") === "location") link.removeAttribute("aria-current");
+        });
+      });
+    }, { rootMargin: "-28% 0px -58% 0px", threshold: 0 });
+    sectionTargets.forEach(({ target }) => sectionObserver.observe(target));
+  }
+
 });
