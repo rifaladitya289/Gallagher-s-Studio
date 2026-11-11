@@ -158,3 +158,39 @@ body.studio-home{background:var(--g-bg);color:var(--g-white);font-family:var(--g
  .studio-home .editorial-footer p{font-size:9px}
 }
 @media(prefers-reduced-motion:reduce){.studio-home .art-orbit{animation:none}.studio-home *{scroll-behavior:auto!important}}
+
+/* Shared cinematic treatment for inner pages */
+body:not(.studio-home){background:#080b12;color:#f3f5f8}
+body:not(.studio-home) .page-shell{max-width:none}
+body:not(.studio-home) .site-header{position:relative;margin:18px auto 0;width:min(calc(100% - 72px),1440px);height:66px;padding:0 22px;border:1px solid rgba(207,220,242,.18);background:rgba(10,15,24,.82);backdrop-filter:blur(20px)}
+body:not(.studio-home) .brand-mark{border:0;background:#789bd0;color:#080b12}
+body:not(.studio-home) .primary-nav .nav-cta{padding:11px 17px;border:1px solid rgba(155,185,232,.5);background:rgba(120,155,208,.12)}
+body:not(.studio-home) .projects-hero,body:not(.studio-home) .page-hero,body:not(.studio-home) .case-hero{min-height:540px;padding:140px clamp(26px,10vw,160px) 90px;background:radial-gradient(ellipse at 78% 30%,rgba(71,103,154,.19),transparent 38%),linear-gradient(120deg,#080b12,#0c1420)}
+body:not(.studio-home) .projects-hero h1,body:not(.studio-home) .page-hero h1,body:not(.studio-home) .case-hero h1{font:700 clamp(88px,13vw,180px)/.78 "Barlow Condensed",sans-serif;letter-spacing:-.045em;text-transform:uppercase;margin:36px 0}
+body:not(.studio-home) .projects-hero h1 span,body:not(.studio-home) .page-hero h1 span,body:not(.studio-home) .case-hero h1 span{color:#9bb9e8}
+body:not(.studio-home) .projects-hero>p:last-child,body:not(.studio-home) .page-hero>p:last-child,body:not(.studio-home) .case-hero .case-lead{max-width:520px;color:#a5afbe;font-size:13px;line-height:2}
+body:not(.studio-home) .section-wrap{padding:110px clamp(26px,10vw,160px)}
+body:not(.studio-home) .section-wrap:nth-of-type(even){background:#0c121d}
+body:not(.studio-home) .editorial-copy h2{font:600 clamp(42px,6vw,78px)/.98 "Barlow Condensed",sans-serif;letter-spacing:-.025em;text-transform:uppercase;max-width:900px}
+body:not(.studio-home) .editorial-copy>p:not(.eyebrow){max-width:660px;color:#a5afbe;font-size:13px;line-height:2}
+body:not(.studio-home) .principle-card,body:not(.studio-home) .service-card{padding:30px;border:1px solid rgba(207,220,242,.15);background:linear-gradient(145deg,rgba(120,155,208,.09),rgba(13,18,28,.55));}
+body:not(.studio-home) .principle-card h3,body:not(.studio-home) .service-card h2{font:600 34px "Barlow Condensed",sans-serif;text-transform:uppercase}
+body:not(.studio-home) .principle-card p,body:not(.studio-home) .service-card p{color:#9aa6b7;font-size:12px;line-height:1.9}
+body:not(.studio-home) .project-filter{display:flex;gap:10px;flex-wrap:wrap}
+body:not(.studio-home) .filter-chip{border:1px solid rgba(207,220,242,.18);background:transparent;color:#cbd5e4;padding:11px 16px}
+body:not(.studio-home) .filter-chip.is-active{background:#9bb9e8;color:#080b12;border-color:#9bb9e8}
+body:not(.studio-home) .filter-status{color:#8492a5;font-size:10px}
+body:not(.studio-home) .contact-section{background:radial-gradient(ellipse at 50% 100%,rgba(65,94,139,.18),transparent 60%);text-align:left}
+body:not(.studio-home) .contact-section h2{font:700 clamp(72px,10vw,138px)/.8 "Barlow Condensed",sans-serif;text-transform:uppercase}
+body:not(.studio-home) .contact-section h2 span{color:#9bb9e8}
+body:not(.studio-home) .contact-link{color:#9bb9e8}
+body:not(.studio-home) .site-footer{padding:28px clamp(26px,8vw,140px)}
+@media(max-width:640px){
+ body:not(.studio-home) .site-header{width:calc(100% - 28px);margin-top:12px;height:58px;padding:0 12px}
+ body:not(.studio-home) .primary-nav{top:57px}
+ body:not(.studio-home) .projects-hero,body:not(.studio-home) .page-hero,body:not(.studio-home) .case-hero{min-height:430px;padding:115px 22px 65px}
+ body:not(.studio-home) .projects-hero h1,body:not(.studio-home) .page-hero h1,body:not(.studio-home) .case-hero h1{font-size:clamp(76px,18vw,116px)}
+ body:not(.studio-home) .section-wrap{padding:82px 22px}
+ body:not(.studio-home) .principle-grid,body:not(.studio-home) .service-grid{grid-template-columns:1fr}
+ body:not(.studio-home) .site-footer{padding:28px 22px}
+}
