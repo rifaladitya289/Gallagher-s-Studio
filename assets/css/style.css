@@ -205,3 +205,12 @@ button { font: inherit; }
 .project-demo-link { display:inline-flex; align-items:center; gap:9px; margin-top:14px; padding-bottom:7px; border-bottom:1px solid rgba(120,155,208,.5); color:var(--blue-bright); font-size:10px; letter-spacing:.02em; }
 .project-demo-link span { font-size:14px; transition:transform .2s ease; }
 .project-demo-link:hover span { transform:translate(2px,-2px); }
+
+
+/* Original StudyTrack X screenshot gallery */
+.stx-real-gallery .stx-screen-card { min-width:0; }
+.stx-image-link { display:block; overflow:hidden; border:1px solid var(--line); border-radius:18px; background:#080b12; }
+.stx-image-link img { display:block; width:100%; height:auto; max-height:760px; object-fit:contain; transition:transform .35s ease; }
+.stx-image-link:hover img { transform:scale(1.015); }
+.stx-real-gallery figcaption { display:grid; gap:7px; padding-top:14px; }
+@media (prefers-reduced-motion:reduce) { .stx-image-link img { transition:none; } }
