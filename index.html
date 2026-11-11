@@ -24,14 +24,14 @@
  </div>
 </header>
 <aside class="scene-index" id="scene-index" aria-hidden="true">
-<div class="index-top"><span>GALLAGHER’S STUDIO / INDEX</span><button type="button" class="index-close" aria-label="Close scene index">CLOSE ×</button></div>
-<nav aria-label="Scene index">
-<a href="#scene-01"><span>01</span> OPENING <i>↗</i></a>
-<a href="#scene-02"><span>02</span> THE WORK <i>↗</i></a>
-<a href="#scene-03"><span>03</span> THE PROCESS <i>↗</i></a>
-<a href="#scene-04"><span>04</span> THE PHILOSOPHY <i>↗</i></a>
-<a href="#scene-05"><span>05</span> THE JOURNEY <i>↗</i></a>
-<a href="#scene-06"><span>06</span> FINAL SCENE <i>↗</i></a>
+<div class="index-top"><span>GALLAGHER’S STUDIO / CHAPTER INDEX</span><button type="button" class="index-close" aria-label="Close scene index">CLOSE ×</button></div>
+<label class="index-search-label" for="chapter-search">CARI BAB / SEARCH CHAPTER</label><input id="chapter-search" class="chapter-search" type="search" placeholder="Ketik judul bab..." autocomplete="off"><nav aria-label="Scene index">
+<a href="#scene-01" data-chapter-link><span>01</span> PEMBUKA / OPENING <i>↗</i></a>
+<a href="#scene-02" data-chapter-link><span>02</span> KARYA YANG BICARA <i>↗</i></a>
+<a href="#scene-03" data-chapter-link><span>03</span> CARA KERJA <i>↗</i></a>
+<a href="#scene-04" data-chapter-link><span>04</span> PRINSIP DI BALIK KARYA <i>↗</i></a>
+<a href="#scene-05" data-chapter-link><span>05</span> PERJALANAN <i>↗</i></a>
+<a href="#scene-06" data-chapter-link><span>06</span> NGOBROL YUK <i>↗</i></a>
 </nav>
 <div class="index-bottom"><span>GALLAGHER’S STUDIO · RIFAL ADITYA</span><span>DESIGNED TO CREATE. BUILT TO INSPIRE.</span></div>
 </aside>
@@ -132,10 +132,10 @@
 </main>
 <div class="dock-wrap" aria-label="Navigasi cepat">
  <nav class="floating-dock" aria-label="Bab utama">
-  <a class="dock-item is-active" href="#scene-02" aria-label="Karya yang bicara" aria-current="location" title="Karya yang bicara"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18.5 9.2 5.5l4.1 8.2 2.2-4.1 5.5 9H3Z"/><path d="M7 18.5 12 9l4.5 9.5"/></svg><span>KARYA</span></a>
+  <a class="dock-item is-active" href="#scene-01" aria-label="Pembuka" aria-current="location" title="Pembuka"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18.5 9.2 5.5l4.1 8.2 2.2-4.1 5.5 9H3Z"/><path d="M7 18.5 12 9l4.5 9.5"/></svg><span>MULAI</span></a>
+  <a class="dock-item" href="#scene-02" aria-label="Karya yang bicara" title="Karya yang bicara"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h5v5H4zM15 13h5v5h-5zM9 8.5h4a2 2 0 0 1 2 2V13M6.5 11v5a2 2 0 0 0 2 2H15"/></svg><span>KARYA</span></a>
   <a class="dock-item" href="#scene-03" aria-label="Cara kerja" title="Cara kerja"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h5v5H4zM15 13h5v5h-5zM9 8.5h4a2 2 0 0 1 2 2V13M6.5 11v5a2 2 0 0 0 2 2H15"/></svg><span>PROSES</span></a>
-  <button class="dock-item" type="button" data-open-sheet="sheet-about" aria-label="Tentang Rifal" title="Tentang Rifal"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c.7-3.4 3.1-5.2 7-5.2s6.3 1.8 7 5.2"/></svg><span>AKU</span></button>
-  <a class="dock-item dock-contact" href="#scene-06" aria-label="Ngobrol yuk" title="Ngobrol yuk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16v11H11l-5 3v-3H4z"/><path d="M8 10h8M8 13h5"/></svg><span>NGOBROL</span></a>
+  <button class="dock-item" type="button" data-open-sheet="sheet-about" aria-label="Tentang Rifal" title="Tentang Rifal"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c.7-3.4 3.1-5.2 7-5.2s6.3 1.8 7 5.2"/></svg><span>AKU</span></button><a class="dock-talk" href="#scene-06">LET’S TALK ↗</a>
  </nav>
 </div>
 <section class="bottom-sheet" id="sheet-work" aria-hidden="true" aria-labelledby="sheet-work-title"><div class="sheet-scrim" data-close-sheet></div><div class="sheet-panel" role="dialog" aria-modal="true"><div class="sheet-grip"></div><button class="sheet-close" type="button" data-close-sheet aria-label="Tutup">×</button><p class="scene-kicker">01 / CASE STUDY · EDTECH</p><h2 class="display" id="sheet-work-title">STUDYTRACK <span>X.</span></h2><img src="assets/images/stx-home-opt.jpg" alt="Tampilan dashboard StudyTrack X" loading="lazy" width="1200" height="800"><div class="sheet-grid"><article><h3>MASALAH</h3><p>Pelajar dapat perlu berpindah di antara beberapa alat untuk jadwal, materi, tugas, dan aktivitas sekolah. StudyTrack X menyatukan sejumlah alur tersebut dalam satu platform browser.</p></article><article><h3>PERANKU</h3><p>StudyTrack X adalah proyek yang aku buat dan kembangkan. Rincian tanggung jawab lebih lanjut akan ditambahkan seiring dokumentasi proyek berkembang.</p></article><article><h3>PROSES</h3><p>Menentukan kebutuhan fitur, menyusun struktur antarmuka, membangun front-end, lalu meninjau pengalaman live dan menyempurnakannya.</p></article><article><h3>TEKNOLOGI</h3><p>HTML, CSS, JavaScript. Versi yang diaudit menggunakan localStorage untuk banyak data akun dan fitur. Tidak mengklaim backend cloud terhubung.</p></article><article><h3>FITUR</h3><p>Akun, profil, jadwal, materi, tugas, agenda, kuis dari catatan, Student Wallet, kalkulator, konverter, timer, stopwatch, dan fitur kelas.</p></article><article><h3>HASIL</h3><p>StudyTrack X tersedia sebagai proyek web live. Belum ada angka penggunaan atau dampak terukur yang diverifikasi, jadi tidak ada metrik yang diklaim.</p></article></div><div class="sheet-gallery"><img src="assets/images/stx-profile-opt.jpg" alt="Antarmuka profil StudyTrack X" loading="lazy"><img src="assets/images/stx-wallet-opt.jpg" alt="Antarmuka Student Wallet" loading="lazy"></div><a class="poster-cta" href="https://rifaladitya289.github.io/studytrack.v26.00/" target="_blank" rel="noopener noreferrer">COBA STUDYTRACK X ↗</a></div></section>
