@@ -471,3 +471,10 @@ html:has(.cinema) a,html:has(.cinema) button{cursor:none}
  .booking-console{padding:18px;gap:8px}
  .booking-console .field textarea{min-height:56px}
 }
+
+/* Final layout refinements */
+.booking-console>.field{grid-column:1/-1}
+.object-frame img{aspect-ratio:1.24;object-fit:contain}
+.poster-art>img:first-of-type{aspect-ratio:1.24}
+.cursor-system.is-link .cursor-core{width:26px;height:26px;background:color-mix(in srgb,var(--accent-strong) 18%,transparent);border:1px solid var(--accent-strong);transition:width .2s,height .2s}
+@media(prefers-reduced-motion:reduce){.cursor-system.is-link .cursor-core{transition:none}}
