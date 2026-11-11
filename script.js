@@ -319,4 +319,5 @@
  const chapterSearch=$('#chapter-search');
  chapterSearch?.addEventListener('input',()=>{const q=chapterSearch.value.trim().toLocaleLowerCase();$('[data-chapter-link]',menuPanel).forEach(link=>{link.hidden=!link.textContent.toLocaleLowerCase().includes(q);});});
 
+ if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}
 })();
