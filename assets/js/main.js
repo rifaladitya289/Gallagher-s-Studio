@@ -18,6 +18,24 @@ document.addEventListener("DOMContentLoaded", () => {
     revealTargets.forEach((element) => element.classList.add("is-visible"));
   }
 
+  // Provide a keyboard-first skip link on every page.
+  const mainContent = document.querySelector("main");
+  if (mainContent) {
+    if (!mainContent.id) mainContent.id = "main-content";
+    mainContent.tabIndex = -1;
+    const skipLink = document.createElement("a");
+    skipLink.className = "skip-link";
+    skipLink.href = "#" + mainContent.id;
+    skipLink.textContent = "Skip to content";
+    document.body.prepend(skipLink);
+  }
+
+  // Decode images asynchronously and defer off-screen media.
+  document.querySelectorAll("img").forEach((image) => {
+    if (!image.hasAttribute("decoding")) image.setAttribute("decoding", "async");
+    if (!image.closest(".hero") && !image.hasAttribute("loading")) image.setAttribute("loading", "lazy");
+  });
+
   const year = document.querySelector("#year");
   if (year) year.textContent = String(new Date().getFullYear());
 
@@ -111,14 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.appendChild(progress);
   const progressBar = progress.querySelector("span");
 
-  const soundButton = document.createElement("button");
-  soundButton.className = "sound-toggle";
-  soundButton.type = "button";
-  soundButton.setAttribute("aria-label", "Turn interface sounds off");
-  soundButton.setAttribute("aria-pressed", "true");
-  soundButton.textContent = "SOUND ON";
-  document.body.appendChild(soundButton);
-
   const topButton = document.createElement("button");
   topButton.className = "back-to-top";
   topButton.type = "button";
@@ -130,53 +140,6 @@ document.addEventListener("DOMContentLoaded", () => {
   cursorGlow.className = "cursor-glow";
   cursorGlow.setAttribute("aria-hidden", "true");
   document.body.appendChild(cursorGlow);
-
-  let soundEnabled = true;
-  try {
-    const savedSound = localStorage.getItem("gs-sound-enabled");
-    if (savedSound !== null) soundEnabled = savedSound === "true";
-  } catch (_) {}
-
-  let audioContext = null;
-  const playUiSound = (kind = "click") => {
-    if (!soundEnabled) return;
-    try {
-      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-      if (!AudioContextClass) return;
-      audioContext = audioContext || new AudioContextClass();
-      if (audioContext.state === "suspended") audioContext.resume();
-      const oscillator = audioContext.createOscillator();
-      const gain = audioContext.createGain();
-      const now = audioContext.currentTime;
-      oscillator.type = "sine";
-      oscillator.frequency.setValueAtTime(kind === "hover" ? 660 : 520, now);
-      oscillator.frequency.exponentialRampToValueAtTime(kind === "hover" ? 880 : 740, now + .035);
-      gain.gain.setValueAtTime(kind === "hover" ? .012 : .022, now);
-      gain.gain.exponentialRampToValueAtTime(.0001, now + (kind === "hover" ? .045 : .075));
-      oscillator.connect(gain);
-      gain.connect(audioContext.destination);
-      oscillator.start(now);
-      oscillator.stop(now + .08);
-    } catch (_) {}
-  };
-
-  const syncSoundButton = () => {
-    soundButton.textContent = soundEnabled ? "SOUND ON" : "SOUND OFF";
-    soundButton.setAttribute("aria-pressed", String(soundEnabled));
-    soundButton.setAttribute("aria-label", soundEnabled ? "Turn interface sounds off" : "Turn interface sounds on");
-  };
-  syncSoundButton();
-  soundButton.addEventListener("click", () => {
-    soundEnabled = !soundEnabled;
-    try { localStorage.setItem("gs-sound-enabled", String(soundEnabled)); } catch (_) {}
-    syncSoundButton();
-    if (soundEnabled) playUiSound();
-  });
-
-  document.addEventListener("click", (event) => {
-    const target = event.target.closest("a,button,[role='button']");
-    if (target && target !== soundButton && target !== topButton) playUiSound("click");
-  }, true);
 
   topButton.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
@@ -204,7 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (targetPath === currentPath && !href.startsWith("mailto:")) link.setAttribute("aria-current", "page");
   });
 
-  if (window.matchMedia("(pointer:fine) and (min-width:1000px)").matches) {
+  if (window.matchMedia("(pointer:fine) and (min-width:1000px)").matches && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     document.body.classList.add("has-cursor-glow");
     window.addEventListener("pointermove", (event) => {
       cursorGlow.style.left = event.clientX + "px";
