@@ -322,4 +322,71 @@ document.addEventListener("DOMContentLoaded", () => {
     group.classList.add("motion-stagger-group");
   });
 
+
+  // Masked word reveals: split heading text into clipped word layers without changing copy.
+  const motionOK = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const maskHeadings = document.querySelectorAll("main h1, main h2, .project-card h3, .capability-row h3");
+  const wrapTextWords = (node, counter) => {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const parts = node.textContent.split(/(\s+)/);
+      const fragment = document.createDocumentFragment();
+      parts.forEach((part) => {
+        if (!part || /^\s+$/.test(part)) { fragment.appendChild(document.createTextNode(part)); return; }
+        const clip = document.createElement("span");
+        clip.className = "mask-word-clip";
+        const word = document.createElement("span");
+        word.className = "mask-word";
+        word.style.setProperty("--mask-delay", Math.min(counter.value++ * 42, 520) + "ms");
+        word.textContent = part;
+        clip.appendChild(word);
+        fragment.appendChild(clip);
+      });
+      node.replaceWith(fragment);
+    } else if (node.nodeType === Node.ELEMENT_NODE && !["SCRIPT","STYLE"].includes(node.tagName)) {
+      Array.from(node.childNodes).forEach((child) => wrapTextWords(child, counter));
+    }
+  };
+  if (motionOK) {
+    maskHeadings.forEach((heading) => {
+      if (heading.dataset.maskReady) return;
+      heading.dataset.maskReady = "true";
+      heading.classList.add("mask-reveal");
+      wrapTextWords(heading, { value: 0 });
+    });
+    if ("IntersectionObserver" in window) {
+      const maskObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-mask-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: .25 });
+      document.querySelectorAll(".mask-reveal").forEach((heading) => maskObserver.observe(heading));
+    } else {
+      document.querySelectorAll(".mask-reveal").forEach((heading) => heading.classList.add("is-mask-visible"));
+    }
+  }
+
+  // Subtle scroll-linked image parallax, limited to editorial project imagery.
+  const parallaxImages = Array.from(document.querySelectorAll(".project-preview img,.stx-image-link img,.stx-screen-card img"));
+  if (motionOK && parallaxImages.length) {
+    let parallaxQueued = false;
+    const updateParallax = () => {
+      const viewport = window.innerHeight || 1;
+      parallaxImages.forEach((img) => {
+        const rect = img.getBoundingClientRect();
+        if (rect.bottom < -80 || rect.top > viewport + 80) return;
+        const offset = (rect.top + rect.height / 2 - viewport / 2) * -.045;
+        img.style.setProperty("--parallax-y", Math.max(-24, Math.min(24, offset)).toFixed(1) + "px");
+      });
+      parallaxQueued = false;
+    };
+    window.addEventListener("scroll", () => {
+      if (!parallaxQueued) { window.requestAnimationFrame(updateParallax); parallaxQueued = true; }
+    }, { passive: true });
+    window.addEventListener("resize", updateParallax, { passive: true });
+    updateParallax();
+  }
+
 });
