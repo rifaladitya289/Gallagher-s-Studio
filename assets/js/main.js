@@ -228,4 +228,57 @@ document.addEventListener("DOMContentLoaded", () => {
     sectionTargets.forEach(({ target }) => sectionObserver.observe(target));
   }
 
+
+  // Micro-interactions: tactile press, magnetic card tilt, ripple and toast feedback.
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.querySelectorAll(".button-link,.nav-cta,.project-demo-link,.overview-link,.launch-card,.project-card,.service-card,.filter-chip").forEach((el) => {
+    el.addEventListener("pointerdown", () => el.classList.add("is-pressed"));
+    ["pointerup","pointercancel","pointerleave","blur"].forEach((eventName) => {
+      el.addEventListener(eventName, () => el.classList.remove("is-pressed"));
+    });
+  });
+
+  if (!reducedMotion && window.matchMedia("(pointer:fine) and (min-width:900px)").matches) {
+    document.querySelectorAll(".launch-card,.project-card,.service-card,.principle-card").forEach((card) => {
+      card.addEventListener("pointermove", (event) => {
+        const rect = card.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width;
+        const y = (event.clientY - rect.top) / rect.height;
+        card.style.setProperty("--tilt-x", ((.5 - y) * 2.2).toFixed(2) + "deg");
+        card.style.setProperty("--tilt-y", ((x - .5) * 2.2).toFixed(2) + "deg");
+        card.style.setProperty("--pointer-x", (x * 100).toFixed(1) + "%");
+        card.style.setProperty("--pointer-y", (y * 100).toFixed(1) + "%");
+      });
+      card.addEventListener("pointerleave", () => {
+        card.style.removeProperty("--tilt-x");
+        card.style.removeProperty("--tilt-y");
+      });
+    });
+  }
+
+  document.querySelectorAll(".button-link,.nav-cta,.project-demo-link,.filter-chip").forEach((control) => {
+    if (control.dataset.rippleReady) return;
+    control.dataset.rippleReady = "true";
+    control.addEventListener("pointerdown", (event) => {
+      if (reducedMotion || event.pointerType === "keyboard") return;
+      const rect = control.getBoundingClientRect();
+      const ripple = document.createElement("span");
+      ripple.className = "interaction-ripple";
+      ripple.style.left = (event.clientX - rect.left) + "px";
+      ripple.style.top = (event.clientY - rect.top) + "px";
+      control.appendChild(ripple);
+      ripple.addEventListener("animationend", () => ripple.remove(), { once:true });
+    });
+  });
+
+  // Live status feedback for project filters and contact form.
+  const statusTargets = [document.querySelector("#filter-status"), document.querySelector("#form-status")].filter(Boolean);
+  statusTargets.forEach((status) => status.setAttribute("aria-live", "polite"));
+
+  // Add a subtle confirmation state to email actions without interrupting navigation.
+  document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
+    link.addEventListener("pointerdown", () => link.classList.add("is-activating"));
+    link.addEventListener("pointerleave", () => link.classList.remove("is-activating"));
+  });
+
 });
