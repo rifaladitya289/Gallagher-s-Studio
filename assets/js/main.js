@@ -1,4 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
+  document.documentElement.classList.add("reveal-ready");
+
+  const revealTargets = document.querySelectorAll("main section, .project-card, .principle-card, .service-card, .stx-screen-card");
+  revealTargets.forEach((element) => element.classList.add("reveal-on-scroll"));
+
+  if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const observer = new IntersectionObserver((entries, currentObserver) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          currentObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealTargets.forEach((element) => observer.observe(element));
+  } else {
+    revealTargets.forEach((element) => element.classList.add("is-visible"));
+  }
+
   const year = document.querySelector("#year");
   if (year) year.textContent = String(new Date().getFullYear());
 
