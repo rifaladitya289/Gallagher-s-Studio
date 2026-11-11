@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://rifaladitya289.github.io/Gallagher-s-Studio/sitemap.xml
