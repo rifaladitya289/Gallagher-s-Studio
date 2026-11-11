@@ -82,7 +82,24 @@
    scenes[0].classList.add('is-active');
  }
 
- // Scroll progress gives the film strip a restrained entrance as its scene arrives.\n const processScene=$('#scene-03');\n const filmstrip=$('[data-filmstrip]');\n if(processScene && filmstrip && !reduced){\n   let stripFrame=0;\n   const updateStrip=()=>{\n     const rect=processScene.getBoundingClientRect();\n     const vh=window.innerHeight||1;\n     const progress=Math.max(0,Math.min(1,(vh-rect.top)/(vh+rect.height)));\n     filmstrip.style.transform='translate3d('+(1-progress)*34+'px,0,0)';\n     stripFrame=0;\n   };\n   const requestStrip=()=>{if(stripFrame)return;stripFrame=requestAnimationFrame(updateStrip);};\n   cinema?.addEventListener('scroll',requestStrip,{passive:true});\n   requestStrip();\n }\n\n // Keyboard shortcuts: arrows navigate scenes; 1–6 jump; M opens menu.
+ // Scroll progress gives the film strip a restrained entrance as its scene arrives.
+ const processScene=$('#scene-03');
+ const filmstrip=$('[data-filmstrip]');
+ if(processScene && filmstrip && !reduced){
+   let stripFrame=0;
+   const updateStrip=()=>{
+     const rect=processScene.getBoundingClientRect();
+     const vh=window.innerHeight||1;
+     const progress=Math.max(0,Math.min(1,(vh-rect.top)/(vh+rect.height)));
+     filmstrip.style.transform='translate3d('+(1-progress)*34+'px,0,0)';
+     stripFrame=0;
+   };
+   const requestStrip=()=>{if(stripFrame)return;stripFrame=requestAnimationFrame(updateStrip);};
+   cinema?.addEventListener('scroll',requestStrip,{passive:true});
+   requestStrip();
+ }
+
+ // Keyboard shortcuts: arrows navigate scenes; 1–6 jump; M opens menu.
  document.addEventListener('keydown', event => {
    const target = event.target;
    const menuOpen = menuPanel?.classList.contains('is-open');
