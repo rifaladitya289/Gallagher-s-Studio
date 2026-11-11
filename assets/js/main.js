@@ -84,6 +84,25 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
+  // Close the mobile menu with Escape or an outside tap.
+  if (toggle && nav) {
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && nav.classList.contains("is-open")) {
+        nav.classList.remove("is-open");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "Open navigation");
+        toggle.focus();
+      }
+    });
+    document.addEventListener("click", (event) => {
+      if (nav.classList.contains("is-open") && !nav.contains(event.target) && !toggle.contains(event.target)) {
+        nav.classList.remove("is-open");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "Open navigation");
+      }
+    });
+  }
+
   // Global interaction layer: scroll progress, audio feedback, cursor glow and back-to-top.
   const progress = document.createElement("div");
   progress.className = "scroll-progress";
