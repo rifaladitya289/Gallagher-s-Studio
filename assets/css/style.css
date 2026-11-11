@@ -1034,3 +1034,7 @@ body { background:#070a10; color:#f3f6fc; }
 @media(prefers-reduced-motion:reduce) {
   .project-card,.service-card,.stx-screen-card,.project-preview img { transition:none!important; }
 }
+
+.project-tags { display:flex; flex-wrap:wrap; gap:7px; margin-top:16px; }
+.project-tags span { display:inline-flex; align-items:center; min-height:26px; padding:5px 9px; border:1px solid rgba(145,180,242,.2); border-radius:999px; background:rgba(91,139,224,.08); color:#b8cbed; font-size:9px; font-weight:700; letter-spacing:.08em; }
+@media(max-width:680px) { .project-tags { gap:6px; margin-top:13px; } .project-tags span { font-size:8px; } }
