@@ -529,3 +529,17 @@ body.sheet-open{overflow:hidden}
 @media(hover:hover) and (min-width:900px){.dock-item:hover{transform:translateY(-5px) scale(1.1);color:var(--accent-strong)}.dock-item:hover span{opacity:1;transform:translateY(0)}}
 @media(max-width:600px){.island-shell{top:calc(env(safe-area-inset-top) + 10px)}.floating-island{min-width:174px;padding:8px 11px}.island-context{font-size:8px}.dock-wrap{bottom:calc(env(safe-area-inset-bottom) + 10px)}.floating-dock{gap:2px;padding:6px}.dock-item{width:42px;height:44px}.dock-contact{min-width:76px;padding:0 9px}.sheet-grid{grid-template-columns:1fr}.sheet-panel{max-height:90dvh}}
 @media(prefers-reduced-motion:reduce){.floating-island,.dock-wrap,.dock-item,.sheet-panel,.sheet-scrim{transition:none!important}}
+
+.top-progress-line{position:fixed;z-index:130;top:0;left:0;right:0;height:2px;background:rgba(243,245,248,.08);pointer-events:none}
+.top-progress-line i{display:block;width:0;height:100%;background:var(--accent-strong);box-shadow:0 0 10px var(--accent);transition:width .25s ease}
+.island-ring{background:conic-gradient(var(--accent-strong) var(--ring-progress,0%),rgba(120,155,208,.18) 0);border:0}
+.island-ring:before{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--panel);z-index:0}
+.island-ring:after{display:none}
+.dock-talk{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:0 13px;border-radius:999px;background:var(--accent);color:#080b12;text-decoration:none;font-size:9px;font-weight:800;letter-spacing:.08em;white-space:nowrap;transition:background .2s ease,transform .2s ease}
+.dock-talk:hover{background:var(--accent-strong);transform:translateY(-2px)}
+.index-search-label{display:block;margin:24px 0 7px;color:var(--muted);font-size:9px;letter-spacing:.16em}
+.chapter-search{width:min(100%,440px);min-height:46px;padding:0 15px;border:1px solid rgba(243,245,248,.2);border-radius:12px;background:var(--panel);color:var(--text);font:inherit}
+.chapter-search:focus-visible{outline:2px solid var(--accent-strong);outline-offset:3px}
+[data-chapter-link][hidden]{display:none}
+@media(max-width:600px){.floating-dock{gap:2px}.dock-talk{padding:0 10px;font-size:8px}.dock-item{width:39px}}
+@media(prefers-reduced-motion:reduce){.top-progress-line i,.dock-talk{transition:none}}
