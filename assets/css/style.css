@@ -904,3 +904,6 @@ input,select,textarea { max-width:100%; }
   @keyframes studio-page-out { to { opacity:0; transform:translateY(-5px); } }
   @keyframes studio-page-in { from { opacity:0; transform:translateY(7px); } to { opacity:1; transform:none; } }
 }
+
+/* Keep sticky navigation working without clipping page effects. */
+.page-shell { overflow:clip; }
