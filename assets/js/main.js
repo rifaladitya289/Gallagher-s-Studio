@@ -40,4 +40,47 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+
+  // Accessible project category filters (the list can grow as projects are added).
+  const filterButtons = document.querySelectorAll("[data-filter]");
+  const projectCards = document.querySelectorAll(".filterable-project");
+  const filterStatus = document.querySelector("#filter-status");
+  if (filterButtons.length && projectCards.length) {
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const filter = button.dataset.filter;
+        let visible = 0;
+        filterButtons.forEach((item) => {
+          const active = item === button;
+          item.classList.toggle("is-active", active);
+          item.setAttribute("aria-pressed", String(active));
+        });
+        projectCards.forEach((card) => {
+          const show = filter === "all" || card.dataset.category === filter;
+          card.hidden = !show;
+          if (show) visible += 1;
+        });
+        if (filterStatus) filterStatus.textContent = `Showing ${visible} project${visible === 1 ? "" : "s"}`;
+      });
+    });
+  }
+
+  // Prepare an inquiry in the visitor's own email app; no form data is stored.
+  const inquiryForm = document.querySelector("#inquiry-form");
+  if (inquiryForm) {
+    inquiryForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (!inquiryForm.reportValidity()) return;
+      const data = new FormData(inquiryForm);
+      const recipient = inquiryForm.dataset.recipient;
+      const subject = encodeURIComponent(`Project inquiry — Gallagher's Studio / ${data.get("project")}`);
+      const body = encodeURIComponent(
+        `Name: ${data.get("name")}\nEmail: ${data.get("email")}\nService: ${data.get("project")}\n\nProject details:\n${data.get("message")}`
+      );
+      const status = document.querySelector("#form-status");
+      if (status) status.textContent = "Opening your email app with the inquiry prepared…";
+      window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+    });
+  }
+
 });
