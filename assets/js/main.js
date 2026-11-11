@@ -292,4 +292,34 @@ document.addEventListener("DOMContentLoaded", () => {
     link.addEventListener("pointerleave", () => link.classList.remove("is-activating"));
   });
 
+
+  // Cinematic page-to-page transition for local navigation; external links remain untouched.
+  const transitionLayer = document.createElement("div");
+  transitionLayer.className = "studio-transition";
+  transitionLayer.setAttribute("aria-hidden","true");
+  document.body.appendChild(transitionLayer);
+  const reduceMotionNow = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduceMotionNow) {
+    document.querySelectorAll('a[href]').forEach((link) => {
+      const raw = link.getAttribute("href") || "";
+      if (!raw || raw.startsWith("#") || raw.startsWith("mailto:") || raw.startsWith("tel:") ||
+          link.target === "_blank" || link.hasAttribute("download")) return;
+      let destination;
+      try { destination = new URL(raw, window.location.href); } catch (_) { return; }
+      if (destination.origin !== window.location.origin || destination.pathname === window.location.pathname) return;
+      link.addEventListener("click", (event) => {
+        if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey ||
+            (event.button !== 0)) return;
+        event.preventDefault();
+        transitionLayer.classList.add("is-active");
+        window.setTimeout(() => { window.location.href = destination.href; }, 430);
+      });
+    });
+  }
+
+  // Stagger visible content blocks to create a deliberate editorial rhythm.
+  document.querySelectorAll(".section-heading,.editorial-capability-list,.contact-editorial-heading,.contact-editorial-panel,.case-section-heading,.feature-list,.principle-grid,.service-grid").forEach((group) => {
+    group.classList.add("motion-stagger-group");
+  });
+
 });
