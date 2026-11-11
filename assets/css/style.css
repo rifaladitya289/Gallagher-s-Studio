@@ -100,3 +100,21 @@ button { font: inherit; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+
+/* Work section link */
+.work-heading-side { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+.work-heading-side .section-intro { margin: 0; }
+@media (max-width: 700px) { .work-heading-side { gap: 10px; } }
+
+/* Projects page */
+.projects-hero { padding: 110px clamp(24px, 12vw, 184px) 90px; border-bottom: 1px solid var(--line); background: radial-gradient(ellipse at 78% 20%, rgba(65,94,139,.16), transparent 48%); }
+.projects-hero h1 { margin: 22px 0; font: 600 clamp(58px, 9vw, 112px)/1 var(--display); letter-spacing: -.08em; }
+.projects-hero h1 span { color: var(--muted); }
+.projects-hero > p:last-child { max-width: 480px; color: var(--muted); font-size: 13px; line-height: 1.9; }
+.projects-empty { min-height: 360px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 45px 24px; border: 1px solid var(--line); background: linear-gradient(140deg, rgba(120,155,208,.07), transparent 55%), var(--surface); }
+.projects-empty .empty-symbol { font-size: 48px; margin-bottom: 18px; }
+.projects-empty h2 { margin: 0 0 10px; font: 600 28px var(--display); letter-spacing: -.05em; }
+.projects-empty p { max-width: 420px; margin: 0 0 24px; color: var(--muted); font-size: 12px; line-height: 1.9; }
+.back-link { display: inline-block; margin-top: 34px; color: var(--muted); font-size: 11px; }
+.back-link:hover { color: var(--text); }
+@media (max-width: 700px) { .projects-hero { padding: 88px 26px 70px; } .projects-empty { min-height: 320px; } }
