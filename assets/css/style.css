@@ -199,3 +199,9 @@ button { font: inherit; }
 .feature-list h3 { margin:0 0 7px; font:600 18px var(--display); }
 .feature-list p { margin:0; color:var(--muted); font-size:12px; line-height:1.9; }
 @media(max-width:700px) { .page-hero { padding:84px 26px 64px; } .principle-grid,.service-grid,.stx-screen-grid,.feature-list { grid-template-columns:1fr; } .stx-screen-art { min-height:400px; } }
+
+
+/* Live project demo links */
+.project-demo-link { display:inline-flex; align-items:center; gap:9px; margin-top:14px; padding-bottom:7px; border-bottom:1px solid rgba(120,155,208,.5); color:var(--blue-bright); font-size:10px; letter-spacing:.02em; }
+.project-demo-link span { font-size:14px; transition:transform .2s ease; }
+.project-demo-link:hover span { transform:translate(2px,-2px); }
